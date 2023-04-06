@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ParseArgs.ClassLibProject\ParseArgs.ClassLibProject.csproj" />
+    <ProjectReference Include="..\ParseArgs.ConsoleProject\ParseArgs.ConsoleProject.csproj" />
   </ItemGroup>
 
 </Project>
