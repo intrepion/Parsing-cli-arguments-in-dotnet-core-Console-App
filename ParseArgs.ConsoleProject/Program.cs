@@ -47,6 +47,19 @@ catapult.Command("add", config =>
 
     });
 });
+catapult.Command("fling", config =>
+{
+    config.Description = "fling snow";
+    var ball = config.Argument("snowballId", "snowball id", false);
+    var cata = config.Argument("catapultId", "id of catapult to use", false);
+    config.OnExecute(() =>
+    {
+
+        //actually do something
+        Console.WriteLine($"threw snowball: {ball.Value} with {cata.Value}");
+        return 0;
+    });
+});
 var snowball = app.Command("snowball", config =>
 {
     config.OnExecute(() =>
