@@ -50,11 +50,17 @@ catapult.Command("add", config =>
 catapult.Command("fling", config =>
 {
     config.Description = "fling snow";
+    var harderParam = config.Option("--even-harder", "fling snowballs at lightning speed!!!", CommandOptionType.NoValue);
     var ball = config.Argument("snowballId", "snowball id", false);
     var cata = config.Argument("catapultId", "id of catapult to use", false);
     config.OnExecute(() =>
     {
-
+        if (harderParam.HasValue())
+        {
+            //actually do something
+            Console.WriteLine($"threw snowball: {ball.Value} with {cata.Value} even harder!!!!");
+            return 0;
+        }
         //actually do something
         Console.WriteLine($"threw snowball: {ball.Value} with {cata.Value}");
         return 0;
