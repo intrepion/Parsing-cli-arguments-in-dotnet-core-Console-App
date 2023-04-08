@@ -6,7 +6,7 @@ var catapult = app.Command("catapult", config =>
     config.OnExecute(() =>
     {
         config.ShowHelp(); //show help for catapult
-        return 0; //return error since we didn't do anything
+        return 1; //return error since we didn't do anything
     });
     config.HelpOption("-? | -h | --help"); //show help on --help
 });
@@ -21,10 +21,11 @@ catapult.Command("help", config =>
 });
 catapult.Command("list", config =>
 {
+    config.Description = "list catapults";
+    config.HelpOption("-? | -h | --help");
     config.OnExecute(() =>
     {
 
-        config.Description = "list catapults";
         Console.WriteLine("a");
         Console.WriteLine("b");
         return 0;
@@ -33,12 +34,13 @@ catapult.Command("list", config =>
 catapult.Command("add", config =>
 {
     config.Description = "Add a catapult";
+    config.HelpOption("-? | -h | --help");
     var arg = config.Argument("name", "name of the catapult", false);
     config.OnExecute(() =>
     {
         if (!string.IsNullOrWhiteSpace(arg.Value))
         {
-            //add snowballs somehow (not showing persistence here)
+            //add snowballs somehow
             Console.WriteLine($"added {arg.Value}");
             return 0;
         }
@@ -50,17 +52,12 @@ catapult.Command("add", config =>
 catapult.Command("fling", config =>
 {
     config.Description = "fling snow";
-    var harderParam = config.Option("--even-harder", "fling snowballs at lightning speed!!!", CommandOptionType.NoValue);
+    config.HelpOption("-? | -h | --help");
     var ball = config.Argument("snowballId", "snowball id", false);
     var cata = config.Argument("catapultId", "id of catapult to use", false);
     config.OnExecute(() =>
     {
-        if (harderParam.HasValue())
-        {
-            //actually do something
-            Console.WriteLine($"threw snowball: {ball.Value} with {cata.Value} even harder!!!!");
-            return 0;
-        }
+
         //actually do something
         Console.WriteLine($"threw snowball: {ball.Value} with {cata.Value}");
         return 0;
@@ -71,7 +68,7 @@ var snowball = app.Command("snowball", config =>
     config.OnExecute(() =>
     {
         config.ShowHelp(); //show help for catapult
-        return 0; //return error since we didn't do anything
+        return 1; //return error since we didn't do anything
     });
     config.HelpOption("-? | -h | --help"); //show help on --help
 });
@@ -86,6 +83,7 @@ snowball.Command("help", config =>
 });
 snowball.Command("list", config =>
 {
+    config.HelpOption("-? | -h | --help");
     config.Description = "list snowballs";
     config.OnExecute(() =>
     {
@@ -98,6 +96,7 @@ snowball.Command("list", config =>
 snowball.Command("add", config =>
 {
     config.Description = "Add a snowball";
+    config.HelpOption("-? | -h | --help");
     var arg = config.Argument("name", "name of the snowball", false);
     config.OnExecute(() =>
     {
