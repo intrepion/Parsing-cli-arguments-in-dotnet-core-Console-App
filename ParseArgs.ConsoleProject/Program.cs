@@ -3,7 +3,21 @@
 var app = new CommandLineApplication();
 var catapult = app.Command("catapult", config =>
 {
-
+    config.OnExecute(() =>
+    {
+        config.ShowHelp(); //show help for catapult
+        return 0; //return error since we didn't do anything
+    });
+    config.HelpOption("-? | -h | --help"); //show help on --help
+});
+catapult.Command("help", config =>
+{
+    config.Description = "get help!";
+    config.OnExecute(() =>
+    {
+        catapult.ShowHelp("catapult");
+        return 1;
+    });
 });
 catapult.Command("list", config =>
 {
