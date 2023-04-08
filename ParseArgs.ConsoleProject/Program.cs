@@ -114,4 +114,5 @@ snowball.Command("add", config =>
 });
 //give people help with --help
 app.HelpOption("-? | -h | --help");
-app.Execute(args);
+var result = app.Execute(args);
+Environment.Exit(result);
